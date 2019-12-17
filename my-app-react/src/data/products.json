@@ -1,0 +1,100 @@
+{
+    "products": [
+        {
+            "id" : "P001",
+            "categoryId" : "cty01",
+            "name" : "Pineapple",
+            "unit" : "0.4Kg",
+            "pricePerUnit" : 16.7,
+            "stocks" : 10  
+        },
+        {
+            "id" : "P002",
+            "categoryId" : "cty01",
+            "name" : "Apple",
+            "unit" : "0.2Kg",
+            "pricePerUnit" : 12.9,
+            "stocks" : 10  
+        },
+        {
+            "id" : "P003",
+            "categoryId" : "cty01",
+            "name" : "Orange",
+            "unit" : "0.3Kg",
+            "pricePerUnit" : 20,
+            "stocks" : 10  
+        },
+        {
+            "id" : "P004",
+            "categoryId" : "cty02",
+            "name" : "Nougat",
+            "unit" : "0.02Kg",
+            "pricePerUnit" : 50,
+            "stocks" : 53
+        },
+        {
+            "id" : "P005",
+            "categoryId" : "cty02",
+            "name" : "Oreo",
+            "unit" : "0.01Kg",
+            "pricePerUnit" : 100,
+            "stocks" : 17
+        },
+        {
+            "id" : "P006",
+            "categoryId" : "cty02",
+            "name" : "Pistachio Ice-Cream",
+            "unit" : "0.03Kg",
+            "pricePerUnit" : 70,
+            "stocks" : 39 
+        },
+        {
+            "id" : "P007",
+            "categoryId" : "cty03",
+            "name" : "The Witcher 3",
+            "unit" : "0.07kg",
+            "pricePerUnit" : 18999,
+            "stocks" : 39
+        },
+        {
+            "id" : "P008",
+            "categoryId" : "cty03",
+            "name" : "FIFA 20",
+            "unit" : "0.07kg",
+            "pricePerUnit" : 21999,
+            "stocks" : 53
+        },
+        {
+            "id" : "P009",
+            "categoryId" : "cty03",
+            "name" : "Forza Motorsport 3",
+            "unit" : "0.07kg",
+            "pricePerUnit" : 15999,
+            "stocks" : 92  
+        },
+        {
+            "id" : "P010",
+            "categoryId" : "cty04",
+            "name" : "Nintendo Switch",
+            "unit" : "0.2Kg",
+            "pricePerUnit" : 59999,
+            "stocks" : 23  
+        },
+        {
+            "id" : "P011",
+            "categoryId" : "cty04",
+            "name" : "Sony PlayStation 4",
+            "unit" : "2.9Kg",
+            "pricePerUnit" : 129499,
+            "stocks" : 7
+        },
+        {
+            "id" : "P0012",
+            "categoryId" : "cty04",
+            "name" : "Xbox OneX",
+            "unit" : "2.1Kg",
+            "pricePerUnit" : 109999,
+            "stocks" : 17 
+        }
+    ]
+  }
