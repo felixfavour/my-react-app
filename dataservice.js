@@ -22,14 +22,14 @@ exports.getCategories = () => {
 }
 
 let combineProductsWithCategories = () => {
-    let catKeys = categoryMap.keys().n
-    let productValues = productMap.values()
+    let catKeys = categoryMap.keys()
+    let productEntries = productMap.values()
     
     for (index in categoriesObject.categories) {
-        let categoryKey = catKeys.next().value.toString()
+        let categoryKey = catKeys.next().value
         let productsArray = []
         for(i=1; i < categoryMap.size; i++) {
-            let productValue = productValues.next().value.toString()
+            let productValue = productEntries.next().value
             productsArray.push(productValue)
 
             if(productsArray.length == 3) {
