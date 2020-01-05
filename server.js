@@ -1,5 +1,6 @@
 let categories = require('./my-app-react/src/data/categories.json')
 let products = require('./my-app-react/src/data/products.json')
+let dataService = require('./dataservice.js')
 
 const express = require('express')
 const app = express()
@@ -14,35 +15,28 @@ app.get('/info', (req, res) => {
 })
 
 app.get('/products/all', (req, res) => {
-    res.json(products)
+    let productsMap = dataService.getProducts()
+    let productsArray = []
+
+    let getValues = (value, key, productsMap) => {productsArray.push(value)}
+
+    productsMap.forEach(getValues)
+
+    res.json(productsArray)
 })
 
 app.get('/products/:id', (req, res) => {
     let urlProductID = req.params.id
-    let productsLocal = products.products
-
-    for (productID in productsLocal) {
-        let product = productsLocal[productID];
-        if(urlProductID == product.id) {
-            res.json(product)
-        }
-    }
-
+    let productsMap = dataService.getProducts()
+    
+    res.json(productsMap.get(urlProductID))
 })
 
 app.get('/category/:id', (req, res) => {
     let urlCategoryID = req.params.id
-    let productsLocal = products.products
-    let arrayOfProducts = []
-
-    for (productID in productsLocal) {
-        let product = productsLocal[productID];
-        if(urlCategoryID == product.categoryId) {
-            arrayOfProducts.push(product)
-        }
-    }
+    let combinedProductMap = dataService.getCombinedProductMap()
     
-    res.json(arrayOfProducts)
+    res.json(combinedProductMap.get(urlCategoryID))
 })
 
 const port = 5000
