@@ -1,0 +1,20 @@
+{
+    "categories": [
+        {
+            "id" : "cty01",
+            "categoryName" : "Fruits"
+        },
+        {
+            "id" : "cty02",
+            "categoryName" : "Confectioneries"
+        },
+        {
+            "id" : "cty03",
+            "categoryName" : "PC Games"
+        },
+        {
+            "id" : "cty04",
+            "categoryName" : "Gaming Consoles"
+        }
+    ]
+}
