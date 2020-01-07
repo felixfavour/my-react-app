@@ -1,43 +1,45 @@
-let categories = require('./my-app-react/src/data/categories.json')
-let products = require('./my-app-react/src/data/products.json')
-let dataService = require('./dataservice.js')
+let dataService = require('./dataservice.js');
 
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 
 app.get('/info', (req, res) => {
-    info = [
-        {"serverName": "localhost5000"},
+    let info = [
+        {"serverName": "localhost5001"},
         {"sampleName": "chinemerem-react"},
         {"serverVersion": "1.0.0"}
-    ]
+    ];
     res.json(info)
-})
+});
 
 app.get('/products/all', (req, res) => {
-    let productsMap = dataService.getProducts()
-    let productsArray = []
-
-    let getValues = (value, key, productsMap) => {productsArray.push(value)}
-
-    productsMap.forEach(getValues)
-
-    res.json(productsArray)
-})
+    let productsMap = dataService.getCombinedProductMap();
+    let allProducts = [];
+    productsMap.forEach(value => {
+       allProducts.push(value)
+    });
+    res.send(allProducts)
+});
 
 app.get('/products/:id', (req, res) => {
-    let urlProductID = req.params.id
-    let productsMap = dataService.getProducts()
+    let urlProductID = req.params.id.toUpperCase();
+    let productsMap = dataService.getCombinedProductMap();
     
-    res.json(productsMap.get(urlProductID))
-})
+    res.send(productsMap.get(urlProductID))
+});
 
 app.get('/category/:id', (req, res) => {
-    let urlCategoryID = req.params.id
-    let combinedProductMap = dataService.getCombinedProductMap()
+    let urlCategoryID = req.params.id;
+    let combinedProductMap = dataService.getCombinedProductMap();
+    let allProducts = [];
+    combinedProductMap.forEach(((value, key, map) =>{
+        if (value.categoryId === urlCategoryID) {
+            allProducts.push(value)
+        }
+    }));
     
-    res.json(combinedProductMap.get(urlCategoryID))
-})
+    res.json(allProducts)
+});
 
-const port = 5000
+const port = 5000;
 app.listen(port, () => console.log(`SERVER started on port ${port}`));

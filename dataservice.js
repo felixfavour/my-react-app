@@ -1,47 +1,46 @@
-let categoriesObject = require('./my-app-react/src/data/categories.json') 
-let productsObject = require('./my-app-react/src/data/products.json')
+const categoriesJson = require('./my-app-react/src/data/categories.json');
+const productsJson = require('./my-app-react/src/data/products.json');
 
 let combinedProductMap = new Map();
-let productMap = new Map()
-let categoryMap = new Map()
+let productMap = new Map();
+let categoryMap = new Map();
 
-exports.getProducts = () => {
-    for (productIndex in productsObject.products) {
-        let product = productsObject.products[productIndex]
-        productMap.set(product.id, product)
+let getProducts = () => {
+    for (let product of productsJson.products) {
+        productMap.set(product.id, product);
     }
-    return productMap
-}
+};
 
-exports.getCategories = () => {
-    for (categoryIndex in categoriesObject.categories) {
-        let category = categoriesObject[categoryIndex]
+let getCategories = () => {
+    for (let category of categoriesJson.categories) {
         categoryMap.set(category.id, category.categoryName)
     }
-    return categoryMap
-}
+};
+
+// Delete Product IDs
+let deleteProductIDs = () => {
+    delete productsJson.products.id
+};
 
 let combineProductsWithCategories = () => {
-    let catKeys = categoryMap.keys()
-    let productEntries = productMap.values()
-    
-    for (index in categoriesObject.categories) {
-        let categoryKey = catKeys.next().value
-        let productsArray = []
-        for(i=1; i < categoryMap.size; i++) {
-            let productValue = productEntries.next().value
-            productsArray.push(productValue)
+    getProducts();
+    getCategories();
 
-            if(productsArray.length == 3) {
-                combinedProductMap.set(categoryKey, productsArray)
+    for (let product of productsJson.products) {
+        for(let category of categoriesJson.categories) {
+            if(product.categoryId === category.id) {
+                product.categoryName = category.categoryName
             }
         }
+        combinedProductMap.set(product.id, product);
     }
-}
+    
+};
 
 exports.getCombinedProductMap = () => {
+    deleteProductIDs();
     if(combinedProductMap.size === 0) {
         combineProductsWithCategories()
     }
     return combinedProductMap
-}
+};
