@@ -14,31 +14,27 @@ app.get('/info', (req, res) => {
 
 app.get('/products/all', (req, res) => {
     let productsMap = dataService.getCombinedProductMap();
-    let allProducts = [];
-    productsMap.forEach(value => {
-       allProducts.push(value)
-    });
-    res.send(allProducts)
+    res.send(productsMap);
 });
 
 app.get('/products/:id', (req, res) => {
-    let urlProductID = req.params.id.toUpperCase();
+    let urlProductID = req.params.id;
     let productsMap = dataService.getCombinedProductMap();
     
-    res.send(productsMap.get(urlProductID))
+    res.send(productsMap.get(urlProductID));
 });
 
 app.get('/category/:id', (req, res) => {
     let urlCategoryID = req.params.id;
     let combinedProductMap = dataService.getCombinedProductMap();
-    let allProducts = [];
-    combinedProductMap.forEach(((value, key, map) =>{
+    const productsBasedOnCategory = new Map();
+    combinedProductMap.forEach(((value, key, map) => {
         if (value.categoryId === urlCategoryID) {
-            allProducts.push(value)
+            productsBasedOnCategory.set(key, value);
         }
     }));
     
-    res.json(allProducts)
+    res.send(productsBasedOnCategory);
 });
 
 const port = 5000;

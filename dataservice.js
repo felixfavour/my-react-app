@@ -12,7 +12,6 @@ let getProducts = () => {
             productMap.set(product.id, product);
         }
     }
-    return productsJson
 };
 
 // function to load categories JSON and convert it to a map.
@@ -23,7 +22,6 @@ let getCategories = () => {
             categoryMap.set(category.id, category.categoryName)
         }
     }
-    return categoriesJson
 };
 
 // Function to combine both products and categories in a collectable and renderable format
@@ -31,20 +29,19 @@ let combineProductsWithCategories = () => {
     getProducts();
     getCategories();
 
-    for (let product of getProducts().products) {
-        for(let category of getCategories().categories) {
+    for (let product of productMap.products) {
+        for(let category of categoryMap.categories) {
             if(product.categoryId === category.id) {
                 product.categoryName = category.categoryName
             }
         }
         combinedProductMap.set(product.id, product);
     }
-    
 };
 // Function to return the result of above function
 exports.getCombinedProductMap = () => {
-    if(combinedProductMap.size === 0) {
+    if (combinedProductMap.size === 0) {
         combineProductsWithCategories()
     }
-    return combinedProductMap
+    return combinedProductMap;
 };
