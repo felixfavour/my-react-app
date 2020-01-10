@@ -1,40 +1,41 @@
-let dataService = require('./dataservice.js');
+const dataService = require('./dataservice.js');
+const fromEntries = require('object.fromentries');
 
 const express = require('express');
 const app = express();
 
 app.get('/info', (req, res) => {
-    let info = [
-        {"serverName": "localhost5001"},
-        {"sampleName": "chinemerem-react"},
+    const info = [
+        {"serverName": "chinemerem-react"},
         {"serverVersion": "1.0.0"}
     ];
     res.json(info)
 });
 
 app.get('/products/all', (req, res) => {
-    let productsMap = dataService.getCombinedProductMap();
-    res.send(productsMap);
+    const productsMap = dataService.getCombinedProductMap();
+    res.send( fromEntries(productsMap));
 });
 
 app.get('/products/:id', (req, res) => {
-    let urlProductID = req.params.id;
-    let productsMap = dataService.getCombinedProductMap();
+    const urlProductID = req.params.id;
+    const productsMap = dataService.getCombinedProductMap();
     
     res.send(productsMap.get(urlProductID));
 });
 
 app.get('/category/:id', (req, res) => {
-    let urlCategoryID = req.params.id;
-    let combinedProductMap = dataService.getCombinedProductMap();
+    const urlCategoryID = req.params.id;
+    const combinedProductMap = dataService.getCombinedProductMap();
     const productsBasedOnCategory = new Map();
-    combinedProductMap.forEach(((value, key, map) => {
+
+    combinedProductMap.forEach(((value, key) => {
         if (value.categoryId === urlCategoryID) {
             productsBasedOnCategory.set(key, value);
         }
     }));
     
-    res.send(productsBasedOnCategory);
+    res.send(fromEntries(productsBasedOnCategory));
 });
 
 const port = 5000;

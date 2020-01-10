@@ -8,7 +8,7 @@ const categoryMap = new Map();
 let getProducts = () => {
     const productsJson = require('./my-app-react/src/data/products.json');
     if (productMap.size === 0) {
-        for (let product of productsJson.products) {
+        for (const product of productsJson.products) {
             productMap.set(product.id, product);
         }
     }
@@ -18,8 +18,8 @@ let getProducts = () => {
 let getCategories = () => {
     const categoriesJson = require('./my-app-react/src/data/categories.json');
     if (categoryMap.size === 0) {
-        for (let category of categoriesJson.categories) {
-            categoryMap.set(category.id, category.categoryName)
+        for (const category of categoriesJson.categories) {
+            categoryMap.set(category.id, category)
         }
     }
 };
@@ -29,9 +29,9 @@ let combineProductsWithCategories = () => {
     getProducts();
     getCategories();
 
-    for (let product of productMap.products) {
-        for(let category of categoryMap.categories) {
-            if(product.categoryId === category.id) {
+    for (const product of productMap.values()) {
+        for(const category of categoryMap.values()) {
+            if(product.categoryId  === category.id) {
                 product.categoryName = category.categoryName
             }
         }
