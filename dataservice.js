@@ -5,9 +5,9 @@ const productMap = new Map();
 const categoryMap = new Map();
 
 // function to load products JSON and convert it to a map.
-let getProducts = () => {
-    const productsJson = require('./my-app-react/src/data/products.json');
-    if (productMap.size === 0) {
+const getProducts = () => {
+    if (!productMap.size) {
+        const productsJson = require('./my-app-react/src/data/products.json');
         for (const product of productsJson.products) {
             productMap.set(product.id, product);
         }
@@ -15,9 +15,9 @@ let getProducts = () => {
 };
 
 // function to load categories JSON and convert it to a map.
-let getCategories = () => {
-    const categoriesJson = require('./my-app-react/src/data/categories.json');
-    if (categoryMap.size === 0) {
+const getCategories = () => {
+    if (!categoryMap.size) {
+        const categoriesJson = require('./my-app-react/src/data/categories.json');
         for (const category of categoriesJson.categories) {
             categoryMap.set(category.id, category)
         }
@@ -25,7 +25,7 @@ let getCategories = () => {
 };
 
 // Function to combine both products and categories in a collectable and renderable format
-let combineProductsWithCategories = () => {
+const combineProductsWithCategories = () => {
     getProducts();
     getCategories();
 
