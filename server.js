@@ -5,9 +5,10 @@ const express = require('express');
 const app = express();
 
 app.get('/info', (req, res) => {
+    const serverInfo = require('package')
     const info = [
-        {"serverName": "chinemerem-react"},
-        {"serverVersion": "1.0.0"}
+        {"serverName": serverInfo.name},
+        {"serverVersion": serverInfo.version}
     ];
     res.json(info)
 });

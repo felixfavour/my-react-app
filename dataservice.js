@@ -40,8 +40,7 @@ const combineProductsWithCategories = () => {
 };
 // Function to return the result of above function
 exports.getCombinedProductMap = () => {
-    if (combinedProductMap.size === 0) {
+    if (!combinedProductMap.size) {
         combineProductsWithCategories()
-    }
-    return combinedProductMap;
+    } return combinedProductMap;
 };
