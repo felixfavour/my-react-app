@@ -23,7 +23,7 @@
   "homepage": "https://github.com/felixfavour/my-react-app#readme",
   "dependencies": {
     "concurrently": "^5.0.1",
-    "express": "^4.17.1"
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "babel": "^6.23.0",
